@@ -11,5 +11,5 @@ jobs:
 
       - name: Instalar Aikido CLI y escanear
         run: |
-          curl -sSL https://cli.aikido.dev/install.sh | bash
+          curl -sSL https://cli.aikido.dev/install.sh | sudo bash
           ./aikido scan --token ${{ secrets.AIKIDO_TOKEN }}
