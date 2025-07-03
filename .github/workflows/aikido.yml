@@ -17,7 +17,8 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y nodejs npm
-          npm install -g @aikidosec/cli
+          npm install -g @aikidosec/ci-api-client
+
 
       - name: Ejecutar escaneo de Aikido
         run: |
