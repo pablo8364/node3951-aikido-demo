@@ -23,9 +23,6 @@ jobs:
         run: |
           aikido-api-client apikey "${{ secrets.AIKIDO_TOKEN }}"
 
-      - name: Ejecutar escaneo de seguridad
+      - name: Ejecutar escaneo
         run: |
-          aikido-api-client scan
-
-
-
+          aikido-api-client scan "${{ github.repository }}" "${{ github.event.before }}" "${{ github.sha }}"
