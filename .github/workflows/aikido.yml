@@ -13,13 +13,11 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v3
 
-      - name: Instalar Aikido CLI
+      - name: Instalar Node y Aikido CLI
         run: |
-          curl -sSL https://cli.aikido.dev/install.sh -o install.sh
-          chmod +x install.sh
-          sudo ./install.sh
-          which aikido
-          aikido --version
+          sudo apt update
+          sudo apt install -y nodejs npm
+          npm install -g @aikidosec/cli
 
       - name: Ejecutar escaneo de Aikido
         run: |
