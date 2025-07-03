@@ -25,4 +25,8 @@ jobs:
 
       - name: Ejecutar escaneo
         run: |
-          aikido-api-client scan "${{ github.repository }}" "${{ github.event.before }}" "${{ github.sha }}"
+          aikido-api-client scan \
+            "${{ github.repository }}" \
+            "${{ github.event.pull_request.base.sha || github.event.before }}" \
+            "${{ github.sha }}" \
+            main
