@@ -20,6 +20,10 @@ jobs:
           npm install -g @aikidosec/ci-api-client
 
 
-      - name: Ejecutar escaneo de Aikido
-        run: |
-          aikido scan --token ${{ secrets.AIKIDO_TOKEN }}
+- name: Ejecutar escaneo
+  run: |
+    aikido-api-client scan \
+      "${{ github.repository }}" \
+      "${{ github.event.pull_request.base.sha || github.event.before }}" \
+      "${{ github.sha }}" \
+      main
