@@ -13,20 +13,14 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v3
 
-      - name: Instalar Node.js y Aikido CI client
+      - name: Instalar Aikido CLI
         run: |
-          sudo apt update
-          sudo apt install -y nodejs npm
-          npm install -g @aikidosec/ci-api-client
+          curl -sSL https://cli.aikido.dev/install.sh -o install.sh
+          chmod +x install.sh
+          sudo ./install.sh
+          which aikido
+          aikido --version
 
-      - name: Configurar token de Aikido
+      - name: Ejecutar escaneo de Aikido
         run: |
-          aikido-api-client apikey "${{ secrets.AIKIDO_TOKEN }}"
-
-      - name: Ejecutar escaneo
-        run: |
-          aikido-api-client scan \
-            "${{ github.repository }}" \
-            "${{ github.event.pull_request.base.sha || github.event.before }}" \
-            "${{ github.sha }}" \
-            main
+          aikido scan --token ${{ secrets.AIKIDO_TOKEN }}
