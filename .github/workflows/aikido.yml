@@ -1,0 +1,15 @@
+name: Aikido Scan
+
+on: [push, pull_request]
+
+jobs:
+  aikido:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Instalar Aikido CLI y escanear
+        run: |
+          curl -sSL https://cli.aikido.dev/install.sh | bash
+          ./aikido scan --token ${{ secrets.AIKIDO_TOKEN }}
